@@ -7,6 +7,8 @@ public class Inventory {
 
     private List<Book> available_book_inventory = new ArrayList<Book>();
 
+    private List<Book> rented_book_inventory = new ArrayList<Book>();
+
     public Inventory(){
         Init();
     }
@@ -20,6 +22,9 @@ public class Inventory {
 
         Book book3 = new Book("Harry Potter", "J. K. Rowling", "1997");
         available_book_inventory.add(book3);
+
+        Book book4 = new Book("Naruto", "Masashi Kishimoto", "1999");
+        rented_book_inventory.add(book4);
     }
 
     public String getListOfBooks(){
@@ -48,5 +53,29 @@ public class Inventory {
             }
         }
         return output_str;
+    }
+
+    public boolean returnRentBook(String book_name){
+        for (Book book : rented_book_inventory) {
+            String current_book_name = book.getName();
+            if(current_book_name.equals(book_name)){
+                rented_book_inventory.remove(book);
+                available_book_inventory.add(book);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkoutBook(String book_name){
+        for (Book book : available_book_inventory) {
+            String current_book_name = book.getName();
+            if(current_book_name.equals(book_name)){
+                available_book_inventory.remove(book);
+                rented_book_inventory.add(book);
+                return true;
+            }
+        }
+        return false;
     }
 }
