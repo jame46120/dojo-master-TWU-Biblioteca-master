@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Inventory {
 
-    private List<Book> available_book_inventory = new ArrayList<Book>();
+    private List<Book> availableBookInventory = new ArrayList<Book>();
 
-    private List<Book> rented_book_inventory = new ArrayList<Book>();
+    private List<Book> rentedBookInventory = new ArrayList<Book>();
 
     public Inventory(){
         Init();
@@ -15,52 +15,52 @@ public class Inventory {
 
     private void Init(){
         Book book1 = new Book("Steve Jobs", "Walter Isaacson", "2011");
-        available_book_inventory.add(book1);
+        availableBookInventory.add(book1);
 
         Book book2 = new Book("One Piece", "Oda", "1998");
-        available_book_inventory.add(book2);
+        availableBookInventory.add(book2);
 
         Book book3 = new Book("Harry Potter", "J. K. Rowling", "1997");
-        available_book_inventory.add(book3);
+        availableBookInventory.add(book3);
 
         Book book4 = new Book("Naruto", "Masashi Kishimoto", "1999");
-        rented_book_inventory.add(book4);
+        rentedBookInventory.add(book4);
     }
 
     public String getListOfBooks(){
-        String output_str = "";
-        output_str += String.format("|%-20s|", "Book Name") + "\n";
-        output_str += String.format("%-20s", "").replace(' ', '_') + "\n";
-        for(int i = 0; i < available_book_inventory.size(); i++){
-            Book book = available_book_inventory.get(i);
-            output_str += String.format("|%-20s|", book.getName());
-            if(i < available_book_inventory.size() - 1){
-                output_str += "\n";
+        String outputStr = "";
+        outputStr += String.format("|%-20s|", "Book Name") + "\n";
+        outputStr += String.format("%-20s", "").replace(' ', '_') + "\n";
+        for(int i = 0; i < availableBookInventory.size(); i++){
+            Book book = availableBookInventory.get(i);
+            outputStr += String.format("|%-20s|", book.getName());
+            if(i < availableBookInventory.size() - 1){
+                outputStr += "\n";
             }
         }
-        return output_str;
+        return outputStr;
     }
 
     public String getListOfBooksWithAuthorAndPublishYear(){
-        String output_str = "";
-        output_str += String.format("|%-20s|%-20s|%-20s|", "Book Name", "Author Name", "Publish Year") + "\n";
-        output_str += String.format("%-20s%-20s%-20s", "", "", "").replace(' ', '_') + "\n";
-        for(int i = 0; i < available_book_inventory.size(); i++){
-            Book book = available_book_inventory.get(i);
-            output_str += String.format("|%-20s|%-20s|%-20s|", book.getName(), book.getAuthor(), book.getPublishYear());
-            if(i < available_book_inventory.size() - 1){
-                output_str += "\n";
+        String outputStr = "";
+        outputStr += String.format("|%-20s|%-20s|%-20s|", "Book Name", "Author Name", "Publish Year") + "\n";
+        outputStr += String.format("%-20s%-20s%-20s", "", "", "").replace(' ', '_') + "\n";
+        for(int i = 0; i < availableBookInventory.size(); i++){
+            Book book = availableBookInventory.get(i);
+            outputStr += String.format("|%-20s|%-20s|%-20s|", book.getName(), book.getAuthor(), book.getPublishYear());
+            if(i < availableBookInventory.size() - 1){
+                outputStr += "\n";
             }
         }
-        return output_str;
+        return outputStr;
     }
 
     public boolean returnRentBook(String book_name){
-        for (Book book : rented_book_inventory) {
-            String current_book_name = book.getName();
-            if(current_book_name.equals(book_name)){
-                rented_book_inventory.remove(book);
-                available_book_inventory.add(book);
+        for (Book book : rentedBookInventory) {
+            String currentBookName = book.getName();
+            if(currentBookName.equals(book_name)){
+                rentedBookInventory.remove(book);
+                availableBookInventory.add(book);
                 return true;
             }
         }
@@ -68,11 +68,11 @@ public class Inventory {
     }
 
     public boolean checkoutBook(String book_name){
-        for (Book book : available_book_inventory) {
-            String current_book_name = book.getName();
-            if(current_book_name.equals(book_name)){
-                available_book_inventory.remove(book);
-                rented_book_inventory.add(book);
+        for (Book book : availableBookInventory) {
+            String currentBookName = book.getName();
+            if(currentBookName.equals(book_name)){
+                availableBookInventory.remove(book);
+                rentedBookInventory.add(book);
                 return true;
             }
         }

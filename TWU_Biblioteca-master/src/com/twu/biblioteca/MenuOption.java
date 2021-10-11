@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuOption {
-    List<String> list_of_menu_options = new ArrayList<String>();
+    List<String> listOfMenuOptions = new ArrayList<String>();
 
     public MenuOption(){
-        list_of_menu_options.add("List of books");
-        list_of_menu_options.add("Checkout a book");
-        list_of_menu_options.add("Return a book");
-        list_of_menu_options.add("Quit the program");
+        listOfMenuOptions.add("List of books");
+        listOfMenuOptions.add("Checkout a book");
+        listOfMenuOptions.add("Return a book");
+        listOfMenuOptions.add("Quit the program");
     }
 
     public String getListOfMenuOption() {
-        String list_of_menu_options_str = "";
-        list_of_menu_options_str += String.format("%-20s", "").replace(' ', '-') + "\n";
-        list_of_menu_options_str += "Menu" + "\n";
-        list_of_menu_options_str += String.format("%-20s", "").replace(' ', '-') + "\n";
-        for(int i = 0; i < list_of_menu_options.size(); i++){
-            String option = list_of_menu_options.get(i);
-            list_of_menu_options_str += option + "\n";
+        String listOfMenuOptionsStr = "";
+        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-') + "\n";
+        listOfMenuOptionsStr += "Menu" + "\n";
+        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-') + "\n";
+        for(int i = 0; i < listOfMenuOptions.size(); i++){
+            String option = listOfMenuOptions.get(i);
+            listOfMenuOptionsStr += option + "\n";
         }
-        list_of_menu_options_str += String.format("%-20s", "").replace(' ', '-');
-        return list_of_menu_options_str;
+        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-');
+        return listOfMenuOptionsStr;
     }
 }

@@ -44,6 +44,8 @@ public class View {
         return "Please select a valid option!";
     }
 
+    public static String menuInputMessageView(){return "Please enter the menu option: ";}
+
     public static String menuErrorMessageView(){
         return "Please select a valid menu!";
     }
