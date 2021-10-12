@@ -8,7 +8,8 @@ public class ViewTest {
 
     @Test
     public void testWelcomeMessage(){
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", View.welcomeMessageView());
+        View view = new View();
+        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", view.welcomeMessageView());
     }
 
     @Test
