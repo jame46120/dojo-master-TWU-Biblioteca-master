@@ -12,43 +12,68 @@ public class Library {
 
     }
 
-    public void run(){
+    private void canCheckoutABookCheck(Scanner userInput){
+        System.out.print(view.checkoutBookInputMessageView());
+        String bookCheckoutInput = userInput.nextLine();
+        if(inventory.checkoutBook(bookCheckoutInput)){
+            System.out.println(view.checkoutBookSuccessMessageView());
+        }
+        else{
+            System.out.println(view.checkoutBookErrorMessageView());
+        }
+    }
+
+    private void canReturnABookCheck(Scanner userInput){
+        System.out.print(view.returnRentBookInputMessageView());
+        String bookReturnInput = userInput.nextLine();
+        if(inventory.returnRentBook(bookReturnInput)){
+            System.out.println(view.returnRentBookSuccessMessageView());
+        }
+        else{
+            System.out.println(view.returnRentBookErrorMessageView());
+        }
+    }
+
+    private void showStartProgramMessage(){
         System.out.println(view.welcomeMessageView());
         System.out.println(view.listOfBooksView(inventory));
+    }
+
+    private void showMenuOptionWithInputMessages(){
+        System.out.println(view.menuOptionView());
+        System.out.print(view.menuInputMessageView());
+    }
+
+    private void showListOfBook(){
+        System.out.println(view.listOfBooksWithAuthorAndPublishYearView(inventory));
+    }
+
+    private void showErrorMenuMessage(){
+        System.out.println(view.menuErrorMessageView());
+    }
+
+    public void run(){
+        showStartProgramMessage();
         Scanner userInput = new Scanner(System.in);
+
         while(true){
-            System.out.println(view.menuOptionView());
-            System.out.print(view.menuInputMessageView());
+            showMenuOptionWithInputMessages();
             String menu_input = userInput.nextLine();
 
             switch (menu_input){
                 case MenuOption.LIST_OF_BOOKS:
-                    System.out.println(view.listOfBooksWithAuthorAndPublishYearView(inventory));
+                    showListOfBook();
                     break;
                 case MenuOption.CHECKOUT_A_BOOK:
-                    System.out.print(view.checkoutBookInputMessageView()); 
-                    String bookCheckoutInput = userInput.nextLine();
-                    if(inventory.checkoutBook(bookCheckoutInput)){
-                        System.out.println(view.checkoutBookSuccessMessageView());
-                    }
-                    else{
-                        System.out.println(view.checkoutBookErrorMessageView());
-                    }
+                    canCheckoutABookCheck(userInput);
                     break;
                 case MenuOption.RETURN_A_BOOK:
-                    System.out.print(view.returnRentBookInputMessageView());
-                    String bookReturnInput = userInput.nextLine();
-                    if(inventory.returnRentBook(bookReturnInput)){
-                        System.out.println(view.returnRentBookSuccessMessageView());
-                    }
-                    else{
-                        System.out.println(view.returnRentBookErrorMessageView());
-                    }
+                    canReturnABookCheck(userInput);
                     break;
                 case MenuOption.QUIT_THE_PROGRAM:
                     return;
                 default:
-                    System.out.println(view.menuErrorMessageView());
+                    showErrorMenuMessage();
                     break;
             }
         }
