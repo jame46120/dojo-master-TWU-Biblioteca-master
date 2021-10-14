@@ -38,10 +38,6 @@ public class LibraryTest {
         System.setIn(testIn);
     }
 
-    private String getOutput() {
-        return testOut.toString();
-    }
-
     @After
     public void restoreSystemInputOutput() {
         System.setIn(systemIn);
@@ -54,7 +50,39 @@ public class LibraryTest {
         provideInput(testString);
         when(mockView.welcomeMessageView()).thenReturn("Hello World");
         lib.run();
-        assertEquals("", getOutput());
         verify(mockView).welcomeMessageView();
     }
+
+    @Test
+    public void shouldCallMenuErrorMessage(){
+        final String testString = "Some Input\nQuit the program";
+        provideInput(testString);
+        when(mockView.menuErrorMessageView()).thenReturn("Wrong Input");
+        lib.run();
+        verify(mockView).menuErrorMessageView();
+    }
+
+    @Test
+    public void shouldCallListOfBooks(){
+        final String testString = "Quit the program";
+        provideInput(testString);
+        lib.run();
+        verify(mockView).listOfBooksView(mockInventory);
+    }
+
+    @Test
+    public void shouldCallListOfBooksWithAuthorAndPublishYear(){
+        final String testString = "List of books\nQuit the program";
+        provideInput(testString);
+        lib.run();
+        verify(mockView).listOfBooksWithAuthorAndPublishYearView(mockInventory);
+    }
+
+//    @Test
+//    public void shouldCallSuccessCheckoutABook(){
+//        final String testString = "Check out a book\nOne Piece\nQuit the program";
+//        provideInput(testString);
+//        lib.run();
+//        verify(mockView).checkoutBookSuccessMessageView();
+//    }
 }

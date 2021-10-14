@@ -27,32 +27,8 @@ public class Inventory {
         rentedBookInventory.add(book4);
     }
 
-    public String getListOfBooks(){
-        String outputStr = "";
-        outputStr += String.format("|%-20s|", "Book Name") + "\n";
-        outputStr += String.format("%-20s", "").replace(' ', '_') + "\n";
-        for(int i = 0; i < availableBookInventory.size(); i++){
-            Book book = availableBookInventory.get(i);
-            outputStr += String.format("|%-20s|", book.getName());
-            if(i < availableBookInventory.size() - 1){
-                outputStr += "\n";
-            }
-        }
-        return outputStr;
-    }
-
-    public String getListOfBooksWithAuthorAndPublishYear(){
-        String outputStr = "";
-        outputStr += String.format("|%-20s|%-20s|%-20s|", "Book Name", "Author Name", "Publish Year") + "\n";
-        outputStr += String.format("%-20s%-20s%-20s", "", "", "").replace(' ', '_') + "\n";
-        for(int i = 0; i < availableBookInventory.size(); i++){
-            Book book = availableBookInventory.get(i);
-            outputStr += String.format("|%-20s|%-20s|%-20s|", book.getName(), book.getAuthor(), book.getPublishYear());
-            if(i < availableBookInventory.size() - 1){
-                outputStr += "\n";
-            }
-        }
-        return outputStr;
+    public List<Book> getAvailableBookInventory(){
+        return availableBookInventory;
     }
 
     public boolean returnRentBook(String book_name){

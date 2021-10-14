@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class MenuOptionTest {
     @Test
     public void testMenuOption(){
+        View view = new View();
         String listOfMenuOptionsStr = "";
         listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-') + "\n";
         listOfMenuOptionsStr += "Menu\n";
@@ -16,6 +17,6 @@ public class MenuOptionTest {
         listOfMenuOptionsStr += "Return a book\n";
         listOfMenuOptionsStr += "Quit the program\n";
         listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-');
-        assertEquals(listOfMenuOptionsStr, View.menuOptionView());
+        assertEquals(listOfMenuOptionsStr, view.menuOptionView());
     }
 }

@@ -5,51 +5,50 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ViewTest {
-
+    private View view = new View();
     @Test
     public void testWelcomeMessage(){
-        View view = new View();
         assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", view.welcomeMessageView());
     }
 
     @Test
     public void testReturnRentBookInputMessage(){
-        assertEquals("Please enter the name of the book you please to return: ", View.returnRentBookInputMessageView());
+        assertEquals("Please enter the name of the book you please to return: ", view.returnRentBookInputMessageView());
     }
 
     @Test
     public void testReturnRentBookSuccessMessage(){
-        assertEquals("Thank you for returning the book", View.returnRentBookSuccessMessageView());
+        assertEquals("Thank you for returning the book", view.returnRentBookSuccessMessageView());
     }
 
     @Test
     public void testReturnRentBookErrorMessage(){
-        assertEquals("That is not a valid book to return.", View.returnRentBookErrorMessageView());
+        assertEquals("That is not a valid book to return.", view.returnRentBookErrorMessageView());
     }
 
     @Test
     public void testCheckoutBookInputMessage(){
-        assertEquals("Please enter the name of the book you please to checkout: ", View.checkoutBookInputMessageView());
+        assertEquals("Please enter the name of the book you please to checkout: ", view.checkoutBookInputMessageView());
     }
 
     @Test
     public void testCheckoutBookSuccessMessage(){
-        assertEquals("Thank you! Enjoy the book", View.checkoutBookSuccessMessageView());
+        assertEquals("Thank you! Enjoy the book", view.checkoutBookSuccessMessageView());
     }
 
     @Test
     public void testCheckoutBookErrorMessage(){
-        assertEquals("Please select a valid option!", View.checkoutBookErrorMessageView());
+        assertEquals("Please select a valid option!", view.checkoutBookErrorMessageView());
     }
 
     @Test
     public void testMenuInputMessage(){
-        assertEquals("Please enter the menu option: ", View.menuInputMessageView());
+        assertEquals("Please enter the menu option: ", view.menuInputMessageView());
     }
 
     @Test
     public void testMenuErrorMessage(){
-        assertEquals("Please select a valid menu!", View.menuErrorMessageView());
+        assertEquals("Please select a valid menu!", view.menuErrorMessageView());
     }
 
     @Test
@@ -65,7 +64,7 @@ public class ViewTest {
         lineStr += String.format("|%-20s|", book2.getName()) + "\n";
         lineStr += String.format("|%-20s|", book3.getName());
 
-        assertEquals(lineStr, View.listOfBooksView(inventory));
+        assertEquals(lineStr, view.listOfBooksView(inventory));
     }
 
     @Test
@@ -81,6 +80,6 @@ public class ViewTest {
         lineStr += String.format("|%-20s|%-20s|%-20s|", book2.getName(), book2.getAuthor(), book2.getPublishYear()) + "\n";
         lineStr += String.format("|%-20s|%-20s|%-20s|", book3.getName(), book3.getAuthor(), book3.getPublishYear());
 
-        assertEquals(lineStr, View.listOfBooksWithAuthorAndPublishYearView(inventory));
+        assertEquals(lineStr, view.listOfBooksWithAuthorAndPublishYearView(inventory));
     }
 }

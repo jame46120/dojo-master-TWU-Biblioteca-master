@@ -4,25 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuOption {
-    List<String> listOfMenuOptions = new ArrayList<String>();
+    public static final String LIST_OF_BOOKS = "List of books";
+    public static final String CHECKOUT_A_BOOK = "Checkout a book";
+    public static final String RETURN_A_BOOK = "Return a book";
+    public static final String QUIT_THE_PROGRAM = "Quit the program";
 
-    public MenuOption(){
-        listOfMenuOptions.add("List of books");
-        listOfMenuOptions.add("Checkout a book");
-        listOfMenuOptions.add("Return a book");
-        listOfMenuOptions.add("Quit the program");
-    }
-
-    public String getListOfMenuOption() {
-        String listOfMenuOptionsStr = "";
-        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-') + "\n";
-        listOfMenuOptionsStr += "Menu" + "\n";
-        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-') + "\n";
-        for(int i = 0; i < listOfMenuOptions.size(); i++){
-            String option = listOfMenuOptions.get(i);
-            listOfMenuOptionsStr += option + "\n";
-        }
-        listOfMenuOptionsStr += String.format("%-20s", "").replace(' ', '-');
-        return listOfMenuOptionsStr;
+    public List<String> getListOfMenuOption() {
+        List<String> listOfMenuOptions = new ArrayList<String>();
+        listOfMenuOptions.add(LIST_OF_BOOKS);
+        listOfMenuOptions.add(CHECKOUT_A_BOOK);
+        listOfMenuOptions.add(RETURN_A_BOOK);
+        listOfMenuOptions.add(QUIT_THE_PROGRAM);
+        return listOfMenuOptions;
     }
 }

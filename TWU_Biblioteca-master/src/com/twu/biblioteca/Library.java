@@ -9,6 +9,7 @@ public class Library {
     public Library(Inventory inventory, View view){
         this.inventory = inventory;
         this.view = view;
+
     }
 
     public void run(){
@@ -21,11 +22,11 @@ public class Library {
             String menu_input = userInput.nextLine();
 
             switch (menu_input){
-                case "List of books":
+                case MenuOption.LIST_OF_BOOKS:
                     System.out.println(view.listOfBooksWithAuthorAndPublishYearView(inventory));
                     break;
-                case "Checkout a book":
-                    System.out.print(view.checkoutBookInputMessageView());
+                case MenuOption.CHECKOUT_A_BOOK:
+                    System.out.print(view.checkoutBookInputMessageView()); 
                     String bookCheckoutInput = userInput.nextLine();
                     if(inventory.checkoutBook(bookCheckoutInput)){
                         System.out.println(view.checkoutBookSuccessMessageView());
@@ -34,8 +35,8 @@ public class Library {
                         System.out.println(view.checkoutBookErrorMessageView());
                     }
                     break;
-                case "Return a book":
-                    System.out.print(View.returnRentBookInputMessageView());
+                case MenuOption.RETURN_A_BOOK:
+                    System.out.print(view.returnRentBookInputMessageView());
                     String bookReturnInput = userInput.nextLine();
                     if(inventory.returnRentBook(bookReturnInput)){
                         System.out.println(view.returnRentBookSuccessMessageView());
@@ -44,7 +45,7 @@ public class Library {
                         System.out.println(view.returnRentBookErrorMessageView());
                     }
                     break;
-                case "Quit the program":
+                case MenuOption.QUIT_THE_PROGRAM:
                     return;
                 default:
                     System.out.println(view.menuErrorMessageView());
