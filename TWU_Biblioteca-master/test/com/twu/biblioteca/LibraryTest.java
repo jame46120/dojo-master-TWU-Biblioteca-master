@@ -1,4 +1,7 @@
 package com.twu.biblioteca;
+import com.twu.biblioteca.service.Inventory;
+import com.twu.biblioteca.service.UI;
+import com.twu.biblioteca.service.View;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +10,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-
 import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
@@ -16,12 +18,13 @@ public class LibraryTest {
     private Library lib;
     private Inventory mockInventory = mock(Inventory.class);
     private View mockView = mock(View.class);
+    private UI mockUI = mock(UI.class);
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
     @Before
     public void initLib() {
-        lib = new Library(mockInventory, mockView);
+        lib = new Library(mockInventory, mockView, mockUI);
     }
 
     private ByteArrayInputStream testIn;
@@ -48,7 +51,7 @@ public class LibraryTest {
     public void shouldCallWelcomeMessage(){
         final String testString = "Quit the program";
         provideInput(testString);
-        when(mockView.welcomeMessageView()).thenReturn("Hello World");
+        when(mockView.welcomeMessageView()).thenReturn("Hello Welcome");
         lib.run();
         verify(mockView).welcomeMessageView();
     }
@@ -82,6 +85,11 @@ public class LibraryTest {
 //    public void shouldCallSuccessCheckoutABook(){
 //        final String testString = "Check out a book\nOne Piece\nQuit the program";
 //        provideInput(testString);
+//        when(mockView.welcomeMessageView()).thenReturn("");
+//        when(mockView.listOfBooksView(mockInventory)).thenReturn("");
+//        when(mockView.menuOptionView()).thenReturn("");
+//        when(mockView.menuInputMessageView()).thenReturn("");
+//        when(mockInventory.checkoutBook("One Piece")).thenReturn(true);
 //        lib.run();
 //        verify(mockView).checkoutBookSuccessMessageView();
 //    }

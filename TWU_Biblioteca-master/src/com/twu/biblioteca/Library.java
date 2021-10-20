@@ -1,61 +1,66 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.MenuOption;
+import com.twu.biblioteca.service.Inventory;
+import com.twu.biblioteca.service.UI;
+import com.twu.biblioteca.service.View;
+
 import java.util.Scanner;
 
 public class Library {
     private Inventory inventory;
     private View view;
+    private UI ui;
 
-    public Library(Inventory inventory, View view){
+    public Library(Inventory inventory, View view, UI ui){
         this.inventory = inventory;
         this.view = view;
-
+        this.ui = ui;
     }
 
     private void canCheckoutABookCheck(Scanner userInput){
-        System.out.print(view.checkoutBookInputMessageView());
+        ui.print(view.checkoutBookInputMessageView());
         String bookCheckoutInput = userInput.nextLine();
         if(inventory.checkoutBook(bookCheckoutInput)){
-            System.out.println(view.checkoutBookSuccessMessageView());
+            ui.print(view.checkoutBookSuccessMessageView());
         }
         else{
-            System.out.println(view.checkoutBookErrorMessageView());
+            ui.print(view.checkoutBookErrorMessageView());
         }
     }
 
     private void canReturnABookCheck(Scanner userInput){
-        System.out.print(view.returnRentBookInputMessageView());
+        ui.print(view.returnRentBookInputMessageView());
         String bookReturnInput = userInput.nextLine();
         if(inventory.returnRentBook(bookReturnInput)){
-            System.out.println(view.returnRentBookSuccessMessageView());
+            ui.print(view.returnRentBookSuccessMessageView());
         }
         else{
-            System.out.println(view.returnRentBookErrorMessageView());
+            ui.print(view.returnRentBookErrorMessageView());
         }
     }
 
     private void showStartProgramMessage(){
-        System.out.println(view.welcomeMessageView());
-        System.out.println(view.listOfBooksView(inventory));
+        ui.print(view.welcomeMessageView());
+        ui.print(view.listOfBooksView(inventory));
     }
 
     private void showMenuOptionWithInputMessages(){
-        System.out.println(view.menuOptionView());
-        System.out.print(view.menuInputMessageView());
+        ui.print(view.menuOptionView());
+        ui.print(view.menuInputMessageView());
     }
 
     private void showListOfBook(){
-        System.out.println(view.listOfBooksWithAuthorAndPublishYearView(inventory));
+        ui.print(view.listOfBooksWithAuthorAndPublishYearView(inventory));
     }
 
     private void showErrorMenuMessage(){
-        System.out.println(view.menuErrorMessageView());
+        ui.print(view.menuErrorMessageView());
     }
 
     public void run(){
         showStartProgramMessage();
         Scanner userInput = new Scanner(System.in);
-
         while(true){
             showMenuOptionWithInputMessages();
             String menu_input = userInput.nextLine();

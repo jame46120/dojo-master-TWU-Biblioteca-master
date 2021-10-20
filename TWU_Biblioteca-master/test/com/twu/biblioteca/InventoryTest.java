@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.service.Inventory;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
 
